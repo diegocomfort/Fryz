@@ -1,12 +1,12 @@
 # Compiler options
 WARNINGS := -std=c99 -Werror -Wall -Wextra
-DEV_WARNINGS := -Wconversion -Wshadow -Wpedantic -pedantic-errors
+DEV_WARNINGS := -Wconversion -Wshadow -Wpedantic -pedantic-errors -Wformat=2
 MACROS := -DFRYZ
 DEV_MACROS := -DFRYZ_DEBUG -DFRYZ_HOT_RELOAD -DLIBFRYZ_PATH=\"$(shell realpath ./dist/libfryz.so)\"
 SHARED_FLAGS := -shared -fPIC
-DEBUG_FLAGS := -ggdb3
+DEBUG_FLAGS := -ggdb3 -fPIC
 LIBRARIES := raylib
-FLAGS := $(shell pkg-config --cflags $(LIBRARIES)) -fPIC
+FLAGS := $(shell pkg-config --cflags $(LIBRARIES))
 LINKS := $(shell pkg-config --libs $(LIBRARIES))
 
 # Directories, Files
