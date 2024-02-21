@@ -18,6 +18,8 @@ int libfryz_init(int argc, char **argv)
     if (fryz == NULL)
         return 1;
 
+    fryz->mode = GRAPH_MODE;
+
     /* int error; */
     int exit_status;
 
@@ -30,8 +32,34 @@ int libfryz_init(int argc, char **argv)
         goto exit_raylib_window;
     }
 
+    InitAudioDevice();
+    if (!IsAudioDeviceReady())
+    {
+        exit_status = 3;
+        goto exit_raylib_audio;
+    }
+    
+    char *audio_path = "/home/diego/Projects/Fryz-SF/tests/audio/thunderstruck.wav";
+    if (argc > 2)
+        audio_path = argv[1];
+    fryz->audio.music = LoadMusicStream(audio_path);
+    if (!IsMusicReady(fryz->audio.music))
+    {
+        exit_status = 3;
+        goto exit_fryz_music;
+    }
+    SetMusicVolume(fryz->audio.music, 1.0f);
+    PlayMusicStream(fryz->audio.music);
+    fryz->audio.paused = false;
+
+    // Success
     return 0;
 
+    // Something went wrong
+exit_fryz_music:
+    UnloadMusicStream(fryz->audio.music);
+exit_raylib_audio:
+    CloseAudioDevice();
 exit_raylib_window:
     CloseWindow();
 

@@ -15,6 +15,7 @@ void safe_free(void *ptr)
 
 void libfryz_close(void)
 {
+    UnloadMusicStream(fryz->audio.music);
     CloseWindow();
     safe_free(fryz);
 }

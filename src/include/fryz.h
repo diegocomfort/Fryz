@@ -13,6 +13,13 @@ struct fryz
         GRAPH_MODE,
     }
     mode;
+
+    struct audio
+    {
+        Music music;
+        bool paused;
+    }
+    audio;
 };
 
 //                identifier       return type,   arguments type(s)
