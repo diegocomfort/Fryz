@@ -1,0 +1,9 @@
+#+title: Fryz
+
+A FRequency AnalYZer
+
+* Installation & Usage
+#+begin_src bash
+make
+./dist/fryz [PATH_TO_SOUND_FILE]
+#+end_src
