@@ -1,5 +1,10 @@
 #+title: Fryz TODO
 
-* TODO Add logging
-** TODO Add initliazation logging
-** TODO Add closing logging
+* TODO Add logging (for any errors, helpful info, etc.)
+** DONE Add initliazation logging
+** DONE Add closing logging
+
+* TODO do fft stuff
+** TODO get fft data structures set up
+** TODO process the audio
+** TODO visualize the fft
