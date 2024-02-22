@@ -12,12 +12,12 @@ int libfryz_update(void)
 
     handle_key_presses();
     
-    BeginDrawing();
+    BeginDrawing(); // Drawing
 
     ClearBackground(RAYWHITE);
     DrawText("Fryz", 190, 200, 20, RED);
 
-    EndDrawing();
+    EndDrawing();   // Drawing
 
     return 0;
 }
@@ -37,7 +37,8 @@ void handle_key_presses(void)
 		PauseMusicStream(fryz->audio.music);
 	    fryz->audio.paused = !fryz->audio.paused;
 	}
-	default: break;
+	break;
+	default: continue;
 	}
     }
 }

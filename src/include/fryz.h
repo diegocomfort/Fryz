@@ -33,11 +33,12 @@ struct fryz
 #define FRYZ_TYPEDEF(name, ret, ...) typedef ret (name##_t)(__VA_ARGS__);
 #define FRYZ_DECLARE_FUNCTION(name, ret, ...) ret name(__VA_ARGS__);
 #define FRYZ_DECLARE(name, ...) name##_t *name = NULL;
-#define FRYZ_RELOAD(name, ...)                  \
-    *(void**)&name = dlsym(libfryz, #name);            \
-    if (name == NULL)                           \
-    {                                           \
-        return 1;                               \
+#define FRYZ_RELOAD(name, ...)                                          \
+    *(void**)&name = dlsym(libfryz, #name);                             \
+    if (name == NULL)                                                   \
+    {                                                                   \
+        TraceLog(LOG_ERROR, "Failed to get addres of " #name ": %s", dlerror()); \
+        return 1;                                                       \
     }
 
 #ifdef FRYZ_HOT_RELOAD

@@ -79,6 +79,7 @@ int reload_libfryz(void)
         error = dlclose(libfryz);
         if (error)
         {
+            TraceLog(LOG_ERROR, "Failed to to close libfryz: %s\n", dlerror());
             return 1;
         }
     }
@@ -86,7 +87,7 @@ int reload_libfryz(void)
     libfryz = dlopen(LIBFRYZ_PATH, RTLD_NOW);
     if (libfryz == NULL)
     {
-        printf("Failed to open "LIBFRYZ_PATH": %s\n", dlerror());
+        TraceLog(LOG_ERROR, "Failed to open "LIBFRYZ_PATH": %s\n", dlerror());
         return 2;
     }
 

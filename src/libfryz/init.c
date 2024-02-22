@@ -16,7 +16,10 @@ int libfryz_init(int argc, char **argv)
 {
     fryz = malloc(sizeof(*fryz));
     if (fryz == NULL)
+    {
+        TraceLog(LOG_ERROR, "Kill some chrome tabs!");
         return 1;
+    }
 
     fryz->mode = GRAPH_MODE;
 
@@ -28,6 +31,7 @@ int libfryz_init(int argc, char **argv)
     InitWindow(800 + argc*0, 450, argv[0]);
     if (!IsWindowReady())
     {
+        TraceLog(LOG_ERROR, "Failed to initialize a window");
         exit_status = 2;
         goto exit_raylib_window;
     }
@@ -35,6 +39,7 @@ int libfryz_init(int argc, char **argv)
     InitAudioDevice();
     if (!IsAudioDeviceReady())
     {
+        TraceLog(LOG_ERROR, "Failed to initialize audio device");
         exit_status = 3;
         goto exit_raylib_audio;
     }
@@ -45,6 +50,7 @@ int libfryz_init(int argc, char **argv)
     fryz->audio.music = LoadMusicStream(audio_path);
     if (!IsMusicReady(fryz->audio.music))
     {
+        TraceLog(LOG_ERROR, "Failed to load music: %s", audio_path);
         exit_status = 3;
         goto exit_fryz_music;
     }
