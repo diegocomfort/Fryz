@@ -1,4 +1,5 @@
 #include "../include/fryz.h"
+#include "../include/audio.h"
 
 #include <raylib.h>
 
@@ -9,6 +10,7 @@ void handle_key_presses(void);
 int libfryz_update(void)
 {
     UpdateMusicStream(fryz->audio.music);
+    /* process_audio(); */
 
     handle_key_presses();
     

@@ -3,8 +3,10 @@
 * TODO Add logging (for any errors, helpful info, etc.)
 ** DONE Add initliazation logging
 ** DONE Add closing logging
+** DONE Add logging to audio init functions
 
 * TODO do fft stuff
-** TODO get fft data structures set up
-** TODO process the audio
+** DONE get fft data structures set up
+** TODO find a useable MAX_FFT_SIZE
+** DONE process the audio
 ** TODO visualize the fft

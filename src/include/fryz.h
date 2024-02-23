@@ -1,23 +1,43 @@
 #ifndef FRYZ_H
 #define FRYZ_H
 
+#include "math.h"
+
 #include <raylib.h>
+#include <fftw3.h>
 
 #include <stdlib.h>
 #include <stdbool.h>
 
+struct fft
+{
+    fftwf_plan plan;
+    fftwf_complex *waveform;
+    fftwf_complex *waveform_windowed;
+    fftwf_complex *out;
+    float *frequency_bins;
+    float smoothing_factor;
+};
+
 struct fryz
 {
-    enum mode
+    enum fryz_mode
     {
         GRAPH_MODE,
     }
     mode;
 
-    struct audio
+    struct fryz_audio
     {
         Music music;
         bool paused;
+	
+	size_t fft_size;
+	size_t max_sample_size;
+	struct range domain;	// frequency domain
+	struct range range;	// sound pressure level range
+        struct fft left;
+        struct fft right;
     }
     audio;
 };
