@@ -1,5 +1,17 @@
 #+title: Fryz TODO
 
+* TODO Bugs
+** DONE User-specified audio 
+when a music file other than the default one is loaded, the analyzer
+doesn't display anything
+Cuase: higher sample rate see ([[dBSPL reference value]])
+
+* 
+
+* DONE Fonts
+** DONE See the ~static~ directory in ~Downloads~, it has the normal fonts
+** DONE Just use one of those fonts (either regular and/or bold)
+
 * TODO Add logging (for any errors, helpful info, etc.)
 ** DONE Add initliazation logging
 ** DONE Add closing logging
@@ -9,4 +21,10 @@
 ** DONE get fft data structures set up
 ** TODO find a useable MAX_FFT_SIZE
 ** DONE process the audio
-** TODO visualize the fft
+** TODO dBSPL reference value
+- What the fuck is it?
+- It isn't (1 << (sample_size - 1)) - 1
+** DONE visualize the fft
+*** DONE add data to fryz for graph
+*** TODO The aproximation doesn't work when the frequency is very low
+*** TODO Find out how to print float with N digits (not N decimal places or N sigfigs)

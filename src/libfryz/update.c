@@ -1,5 +1,6 @@
 #include "../include/fryz.h"
 #include "../include/audio.h"
+#include "../include/graph.h"
 
 #include <raylib.h>
 
@@ -9,39 +10,44 @@ void handle_key_presses(void);
 
 int libfryz_update(void)
 {
-    UpdateMusicStream(fryz->audio.music);
-    /* process_audio(); */
+	UpdateMusicStream(fryz->audio.music);
+	process_audio();
 
-    handle_key_presses();
-    
-    BeginDrawing(); // Drawing
+	handle_key_presses();
 
-    ClearBackground(RAYWHITE);
-    DrawText("Fryz", 190, 200, 20, RED);
+	set_graph_viewport();
+	render_graph();
 
-    EndDrawing();   // Drawing
-
-    return 0;
+	return 0;
 }
 
 void handle_key_presses(void)
 {
-    int key;
-    while ((key = GetKeyPressed()))
-    {
-	switch (key)
+	int key;
+	while ((key = GetKeyPressed()))
 	{
-	case KEY_SPACE:
-	{
-	    if (fryz->audio.paused)
-		ResumeMusicStream(fryz->audio.music);
-	    else
-		PauseMusicStream(fryz->audio.music);
-	    fryz->audio.paused = !fryz->audio.paused;
+		switch (key)
+		{
+		case KEY_M:
+			toggle_mute();
+			break;
+		case KEY_SPACE:
+		case KEY_SEMICOLON:
+			toggle_pause();
+			break;
+		case KEY_H:
+			skip(-10.0);
+			break;
+		case KEY_J:
+			skip(-1.0 / 30);
+			break;
+		case KEY_K:
+			skip(1.0 / 30);
+			break;
+		case KEY_L:
+			skip(10.0);
+			break;
+		default: continue;
+		}
 	}
-	break;
-	default: continue;
-	}
-    }
 }
-
