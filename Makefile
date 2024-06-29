@@ -1,7 +1,7 @@
 # Compiler options
 WARNINGS := -std=c99 -Werror -Wall -Wextra -Wno-format-truncation
 DEV_WARNINGS := -Wshadow -Wpedantic -pedantic-errors -Wformat=2 #-Wconversion
-MACROS := -DFRYZ -DLIBFRYZ_PATH=\"$(shell realpath ./dist/libfryz.so)\" -DFRYZ_FONT_PATH=\"$(shell realpath ./resources/RobotoMono-Regular.ttf)\" -DDEFAULT_AUDIO_PATH=\"$(shell realpath ./resources/audio/Glory.wav)\" 
+MACROS := -DFRYZ -DLIBFRYZ_PATH=\"$(shell echo "${PWD}/dist/libfryz.so")\" -DFRYZ_FONT_PATH=\"$(shell realpath ./resources/RobotoMono-Regular.ttf)\" -DDEFAULT_AUDIO_PATH=\"$(shell realpath ./resources/audio/Glory.wav)\" 
 DEV_MACROS := -DFRYZ_DEBUG -DFRYZ_HOT_RELOAD
 SHARED_FLAGS := -shared -fPIC
 DEBUG_FLAGS := -ggdb3 -fPIC

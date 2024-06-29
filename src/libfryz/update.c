@@ -38,12 +38,6 @@ void handle_key_presses(void)
 		case KEY_H:
 			skip(-10.0);
 			break;
-		case KEY_J:
-			skip(-1.0 / 30);
-			break;
-		case KEY_K:
-			skip(1.0 / 30);
-			break;
 		case KEY_L:
 			skip(10.0);
 			break;

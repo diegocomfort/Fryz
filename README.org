@@ -2,8 +2,34 @@
 
 A FRequency AnalYZer
 
-* Installation & Usage
+* Installation
+** Dependancies
+[[raylib.com][raylib]]
+[[fftw.org][fftw]]
+
+** Compilation
+*** Make Targets
+- ~dev~: create hot-reloadabl executable and shared object
+- ~reaload~: create/update shared object
+- ~prod~: create standard executable (not hot-reloadable)
+- ~clean~: wipe $DIST
+- ~all~: should be ~prod~ but isn't working
+
+*** Making
+If you don't give an audio/music file of your own, you will be treated
+to "Glory" by Radical Face
 #+begin_src bash
-make
-./dist/fryz [PATH_TO_SOUND_FILE]
+make <target>
+./dist/fryz [OPTIONAL_PATH_TO_SOUND_FILE]
 #+end_src
+
+* Usage
+** Keybindings
+| Key     | Action                  |
+|---------+-------------------------|
+| m       | toggle mute             |
+| r       | hot-reload the app      |
+| <space> | toggle play/pause       |
+| ;       | toggle play/pause       |
+| h       | skip back 10 seconds    |
+| l       | skip forward 10 seconds |

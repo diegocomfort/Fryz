@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 	while(!WindowShouldClose())
 	{
 #if defined(FRYZ_HOT_RELOAD)
-		if (IsKeyPressed(KEY_F5))
+		if (IsKeyPressed(KEY_R))
 		{
 			struct fryz *state = libfryz_save();
 			error = reload_libfryz();
