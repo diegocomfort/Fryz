@@ -25,6 +25,5 @@ void libfryz_restore(struct fryz *state)
 	fryz = state;
 	AttachAudioStreamProcessor(fryz->audio.music.stream,
 				   raylib_waveform_capture_callback);
-	fryz->audio.left.smoothing_factor = 0;
 	TraceLog(LOG_INFO, "Succesfully reloaded libfryz");
 }

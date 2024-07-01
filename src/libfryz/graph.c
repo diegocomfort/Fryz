@@ -141,8 +141,8 @@ void render_vertical_grid(void)
 		}
 		else
 		{
-			snprintf(frequency, 10, "%dk",
-				 (int) frequencies[i] / 1000);
+			snprintf(frequency, 10, "%gk",
+				 frequencies[i] / 1000);
 		}
 		text.string = frequency;
 
@@ -295,7 +295,7 @@ void render_crosshair(void)
 }
 
 #define BUFFER_SIZE 32
-#define SPACES "                        "
+#define SPACES "                        " // Yes, a bunch of spaces
 void render_info_at_crosshair(void)
 {
 	Vector2 mouse;
@@ -328,11 +328,17 @@ void render_info_at_crosshair(void)
 		lerp_range(dBSPL_range, normalized_dBSPL_at_right_frequency);;
 
 	snprintf(info_at_point,            BUFFER_SIZE,
-		 "(%06d Hz, %06.3f dBFS)", (int)frequency, dBSPL);
-	snprintf(left_info_at_frequency,   BUFFER_SIZE,
-		 "Left:  %.3f dBFS%s",     dBSPL_at_left_frequency, SPACES);
+		 "(%06d Hz, %6g dBFS)", (int)frequency, dBSPL);
+	// Yes, its hacky as fuck, but printf just does not have the right
+	// format specifier for me
+	snprintf(left_info_at_frequency,  BUFFER_SIZE,
+		 "Left:  %04d.%03d dBFS%s",
+		 (int)dBSPL_at_left_frequency,
+		 abs((int)(dBSPL_at_left_frequency * 1000) % 1000), SPACES);
 	snprintf(right_info_at_frequency,  BUFFER_SIZE,
-		 "Right: %.3f dBFS%s",     dBSPL_at_right_frequency, SPACES);
+		 "Right: %04d.%03d dBFS%s",
+		 (int)dBSPL_at_right_frequency,
+		 abs((int)(dBSPL_at_right_frequency * 1000) % 1000), SPACES);
 
 	struct text_info_t text_info_at_point;
 	text_info_at_point.string = info_at_point;
@@ -353,7 +359,7 @@ void render_info_at_crosshair(void)
 	struct text_info_t left_info;
 	left_info.string = left_info_at_frequency;
 	left_info.font_size = 25;
-	left_info.spacing = 0;
+	left_info.spacing = 1;
 	left_info.color = RED;
 	Vector2 left_info_position;
 	left_info_position.x = viewport.x + viewport.width;
@@ -368,7 +374,7 @@ void render_info_at_crosshair(void)
 	struct text_info_t right_info;
 	right_info.string = right_info_at_frequency;
 	right_info.font_size = 25;
-	right_info.spacing = 0;
+	right_info.spacing = 1;
 	right_info.color = BLUE;
 	Vector2 right_info_position;
 	right_info_position.x = viewport.x + viewport.width;

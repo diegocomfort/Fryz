@@ -4,7 +4,6 @@
 
 #include <stdlib.h>
 #include <dlfcn.h>
-#include <stdlib.h>
 #include <stdio.h>
 
 #if defined(FRYZ_HOT_RELOAD)
