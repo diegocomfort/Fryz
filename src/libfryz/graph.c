@@ -332,13 +332,9 @@ void render_info_at_crosshair(void)
 	// Yes, its hacky as fuck, but printf just does not have the right
 	// format specifier for me
 	snprintf(left_info_at_frequency,  BUFFER_SIZE,
-		 "Left:  %04d.%03d dBFS%s",
-		 (int)dBSPL_at_left_frequency,
-		 abs((int)(dBSPL_at_left_frequency * 1000) % 1000), SPACES);
-	snprintf(right_info_at_frequency,  BUFFER_SIZE,
-		 "Right: %04d.%03d dBFS%s",
-		 (int)dBSPL_at_right_frequency,
-		 abs((int)(dBSPL_at_right_frequency * 1000) % 1000), SPACES);
+		 "Left:  %6g dBFS%s",     dBSPL_at_left_frequency, SPACES);
+	snprintf(right_info_at_frequency, BUFFER_SIZE,
+		 "Right: %6g dBFS%s",     dBSPL_at_right_frequency, SPACES);
 
 	struct text_info_t text_info_at_point;
 	text_info_at_point.string = info_at_point;
