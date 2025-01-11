@@ -242,7 +242,9 @@ void take_magnitude_of_frequency_bins(void)
 		float left_real = left.out[i][0];
 		float left_imaginary = left.out[i][1];
 		float right_real = right.out[i][0];
-		float right_imaginary = right.out[i][1];
+		float right_imaginary = right.out[i][1]; // Should it be 0? Why
+							 // should phase be
+							 // taken into account?
 		left.frequency_bins[i] = magnitude(left_real, left_imaginary);
 		right.frequency_bins[i] = magnitude(right_real,
 						    right_imaginary);
