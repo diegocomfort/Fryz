@@ -3,13 +3,13 @@
 A FRequency AnalYZer
 
 * Installation
-** Dependancies
-[[raylib.com][raylib]]
-[[fftw.org][fftw]]
+** Dependencies
+[[https://raylib.com][raylib]]
+[[https://fftw.org][fftw]]
 
 ** Compilation
 *** Make Targets
-- ~dev~: create hot-reloadabl executable and shared object
+- ~dev~: create hot-reloadable executable and shared object
 - ~reaload~: create/update shared object
 - ~prod~: create standard executable (not hot-reloadable)
 - ~clean~: wipe $DIST
