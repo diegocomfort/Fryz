@@ -52,7 +52,7 @@ int libfryz_init(int argc, char **argv)
 	if (argc > 1)
 		audio_path = argv[1];
 	fryz->audio.music = LoadMusicStream(audio_path);
-	if (!IsMusicReady(fryz->audio.music))
+	if (!IsMusicValid(fryz->audio.music))
 	{
 		TraceLog(LOG_ERROR, "Failed to load music: %s", audio_path);
 		exit_status = 3;
@@ -98,7 +98,7 @@ int libfryz_init(int argc, char **argv)
 
 	// Load font
 	fryz->font = LoadFont(FRYZ_FONT_PATH);
-	if (!IsFontReady(fryz->font))
+	if (!IsFontValid(fryz->font))
 	{
 		TraceLog(LOG_ERROR, "Failed to load font %s", FRYZ_FONT_PATH);
 		exit_status = 5;
